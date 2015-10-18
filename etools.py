@@ -32,8 +32,6 @@ class Etools(object):
         names = []
         out_html = open('attendees-html-list.txt', 'w')
 
-        print self.in_file
-
         for line in self.in_file:
             cells = line.split('\t')
             first_name = cells[self.get_data_col('First Name')].strip().lower().title()
@@ -72,8 +70,6 @@ class Etools(object):
         emails = []
         out_emails = open('email-addresses.txt', 'w')
 
-        print self.in_file
-
         for line in self.in_file:
             cells = line.split('\t')
             email = cells[self.get_data_col('Email Address')].strip().lower()
@@ -91,11 +87,15 @@ class Etools(object):
         print '...done.'
 
     def load_source_file(self):
+        """Load the source file of data (the attendees list in text format from eventbrite)."""
+
         self.in_file = open(self.filename, 'r')
 
         self.data = self.in_file.readline().split('\t')
 
     def close_source_file(self):
+        """Close the source file."""
+
         self.in_file.close()
 
 
